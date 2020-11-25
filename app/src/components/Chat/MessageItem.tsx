@@ -23,11 +23,10 @@ interface IProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      padding: theme.spacing(1, 2),
-      overflow: "hidden",
+      padding: theme.spacing(1, 1),
     },
     content: (props: IProps) => ({
-      padding: theme.spacing(1, 1),
+      padding: theme.spacing(1, 1.5),
       minHeight: theme.spacing(3),
       backgroundColor: props.isOwn ? theme.palette.primary.light : "#fff",
     }),

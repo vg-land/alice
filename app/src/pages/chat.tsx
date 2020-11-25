@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { Paper, List } from "@material-ui/core";
 
@@ -7,6 +7,7 @@ import MessageItem from "../components/Chat/MessageItem";
 import { useMessage } from "../store/messages";
 import { userValue } from "../store/user";
 import { useRecoilValue } from "recoil";
+import { createSocket } from "../store";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,9 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {}
 
 const Messages: React.FC<Props> = (props: Props) => {
+  useEffect(() => {
+    createSocket();
+  }, []);
   const classes = useStyles(props);
-
   const messages = useMessage();
+
   const user = useRecoilValue(userValue);
   return (
     <React.Fragment>

@@ -51,5 +51,13 @@ export const useMessage = () => {
       };
       setList([...list, message]);
     },
+    get: (data: any) => {
+      data = {
+        timestamp: new Date().getTime(),
+        avatar: "",
+        ...data,
+      };
+      setList([...list, data]);
+    },
   };
 };
