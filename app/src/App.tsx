@@ -1,8 +1,8 @@
 import React from "react";
 
-import Chat from "./pages/Chat";
+import Chat from "./pages/chat";
 
-const App = () => {
+const App: any = () => {
   return <Chat></Chat>;
 };
 

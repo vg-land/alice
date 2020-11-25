@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   AppBar,
   createStyles,
@@ -24,25 +24,25 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: 0,
     },
     toolbar: {
-      padding: theme.spacing(1, 1),
+      padding: theme.spacing(1.5, 1.5),
+      minHeight: "inherit",
     },
   }),
 );
 
 const InputBar = ({ onSend = () => {} }: any) => {
   const classes = useStyles();
+  const inputRef: any = useRef();
   const [input, setInput] = useState("");
 
+  // 发送消息
   const handleSend = () => {
-    onSend({
-      id: Math.random().toString(36).slice(2),
-      value: input,
-      avatar: "/static/images/avatar/5.jpg",
-    });
+    onSend(input);
     setInput("");
+    inputRef?.current?.focus();
   };
   return (
-    <AppBar position="fixed" className={classes.appBar} color="default">
+    <AppBar className={classes.appBar} color="default">
       <Toolbar className={classes.toolbar}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item xs>
@@ -51,6 +51,7 @@ const InputBar = ({ onSend = () => {} }: any) => {
               className={classes.input}
               onChange={(val) => setInput(val.target.value)}
               value={input}
+              inputRef={inputRef}
             />
           </Grid>
           <Grid item>
