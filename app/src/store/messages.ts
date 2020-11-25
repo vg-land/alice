@@ -1,35 +1,9 @@
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-import { userValue } from "./user";
+import { atom, selector, useRecoilState } from "recoil";
+import { socket } from "../utils/socket";
 
 export const messageListState = atom({
   key: "messageListState",
-  default: [
-    {
-      id: "1",
-      value: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-      avatar: "/static/images/avatar/5.jpg",
-      timestamp: 1606290480508,
-    },
-    {
-      id: "2",
-      value: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
-      avatar: "/static/images/avatar/1.jpg",
-      timestamp: 1606290717323,
-    },
-    {
-      id: "3",
-      value: "I am try out this new BBQ recipe, I think this might be amazing",
-      avatar: "/static/images/avatar/2.jpg",
-      timestamp: 1606290724365,
-    },
-    {
-      id: "10000",
-      value: "I am try out this new BBQ recipe, I think this might be amazing",
-      avatar: "",
-      timestamp: 1606290729715,
-    },
-  ],
+  default: [] as any[],
 });
 
 export const messageListValue = selector({
@@ -39,25 +13,29 @@ export const messageListValue = selector({
 
 export const useMessage = () => {
   const [list, setList] = useRecoilState(messageListState);
-  const user = useRecoilValue(userValue);
+  const sendMessage = (text: string) => {
+    const message = {
+      value: text,
+      timestamp: new Date().getTime(),
+      id: "admin",
+      avatar: "123",
+    };
+    setList([...list, message]);
+    socket.emit("new message", text);
+  };
+
+  const getMessage = (data: { message: string; username: string }) => {
+    const message = {
+      timestamp: new Date().getTime(),
+      avatar: "",
+      id: data.username,
+      value: data.message,
+    };
+    setList([...list, message]);
+  };
   return {
     list,
-    send: (text: string) => {
-      const message = {
-        value: text,
-        timestamp: new Date().getTime(),
-        id: user.id,
-        avatar: user.avatar,
-      };
-      setList([...list, message]);
-    },
-    get: (data: any) => {
-      data = {
-        timestamp: new Date().getTime(),
-        avatar: "",
-        ...data,
-      };
-      setList([...list, data]);
-    },
+    send: sendMessage,
+    get: getMessage,
   };
 };

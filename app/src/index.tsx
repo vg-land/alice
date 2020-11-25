@@ -19,11 +19,11 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <RecoilRoot>
         <App />
-      </ThemeProvider>
-    </RecoilRoot>
+      </RecoilRoot>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

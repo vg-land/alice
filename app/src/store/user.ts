@@ -3,7 +3,7 @@ import { atom, selector, useRecoilState } from "recoil";
 export const userState = atom({
   key: "userState",
   default: {
-    id: "10000",
+    id: "admin",
     name: "admin",
     avatar: "",
   },
