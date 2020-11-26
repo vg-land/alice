@@ -1,6 +1,6 @@
 import createSocket from "./utils/createSocket";
 import express from "express";
-import staticFile from "./middlewares/staticFile";
+import staticFile from "./middleware/staticFile";
 
 const app = express();
 const server = createSocket(app);
