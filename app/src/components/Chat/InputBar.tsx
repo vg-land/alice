@@ -9,6 +9,7 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,6 +42,25 @@ const InputBar = ({ onSend = () => {} }: any) => {
     setInput("");
     inputRef?.current?.focus();
   };
+
+  // 在输入框内才有用
+  const isInputEvent = (event: KeyboardEvent) => {
+    return event.target === inputRef.current;
+  };
+
+  // 热键
+  useHotkeys(
+    "enter",
+    (event) => {
+      event.preventDefault();
+      handleSend();
+    },
+    {
+      filter: isInputEvent,
+    },
+    [input],
+  );
+
   return (
     <AppBar className={classes.appBar} color="default">
       <Toolbar className={classes.toolbar}>
