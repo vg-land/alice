@@ -48,7 +48,7 @@ const InputBar = ({ onSend = () => {} }: any) => {
     return event.target === inputRef.current;
   };
 
-  // 热键
+  // 回车发送信息
   useHotkeys(
     "enter",
     (event) => {
@@ -57,6 +57,16 @@ const InputBar = ({ onSend = () => {} }: any) => {
     },
     {
       filter: isInputEvent,
+    },
+    [input],
+  );
+
+  // ctrl+回车换行
+  useHotkeys(
+    "ctrl+enter",
+    (event) => {
+      event.preventDefault();
+      setInput(`${input}\n`);
     },
     [input],
   );
