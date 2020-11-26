@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: 0,
     },
     toolbar: {
-      padding: theme.spacing(1.5, 1.5),
+      padding: theme.spacing(1, 1),
       minHeight: "inherit",
     },
   }),

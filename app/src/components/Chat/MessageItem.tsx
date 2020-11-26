@@ -47,7 +47,7 @@ const MessageItem = (props: IProps) => {
       className={classes.root}
       spacing={1}
     >
-      <Grid item style={{ flex: 1 }}>
+      <Grid item style={{ width: 48 }}>
         {!isOwn && (
           <Avatar
             className={classes.avatar}
@@ -57,12 +57,12 @@ const MessageItem = (props: IProps) => {
           />
         )}
       </Grid>
-      <Grid item style={{ flex: 6 }}>
+      <Grid item style={{ flex: 1 }}>
         <Paper className={classes.content} elevation={0}>
           <Typography color="textPrimary">{dataSource.value}</Typography>
         </Paper>
       </Grid>
-      <Grid item style={{ flex: 1 }}>
+      <Grid item style={{ width: 48 }}>
         {isOwn && (
           <Avatar
             className={classes.avatar}
