@@ -47,7 +47,7 @@ const Messages: React.FC<Props> = (props: Props) => {
           ))}
         </List>
       </Paper>
-      <InputBar onSend={(text: string) => messages.send(text)}></InputBar>
+      <InputBar onSend={(text: string) => messages.new(text)}></InputBar>
     </React.Fragment>
   );
 };

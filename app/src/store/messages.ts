@@ -13,15 +13,22 @@ export const messageListValue = selector({
 
 export const useMessage = () => {
   const [list, setList] = useRecoilState(messageListState);
-  const sendMessage = (text: string) => {
-    const message = {
-      value: text,
+  const sendMessage = (data: any) => {
+    let message = {
+      value: "",
       timestamp: new Date().getTime(),
       id: "admin",
       avatar: "123",
     };
+    if (typeof data === "string") {
+      message = {
+        ...message,
+        value: data,
+      };
+    }
+
     setList([...list, message]);
-    socket.emit("new message", text);
+    socket.emit("new message", data);
   };
 
   const getMessage = (data: { message: string; username: string }) => {
@@ -35,7 +42,7 @@ export const useMessage = () => {
   };
   return {
     list,
-    send: sendMessage,
+    new: sendMessage,
     get: getMessage,
   };
 };

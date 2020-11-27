@@ -36,7 +36,7 @@ export const useSocket = () => {
     socket.on("reconnect_error", () => {
       console.log("attempt to reconnect has failed");
     });
-  }, [message]);
+  }, []);
   return socket;
 };
 
