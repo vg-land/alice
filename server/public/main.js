@@ -23,16 +23,6 @@ $(function () {
 
     var socket = io();
 
-    const addParticipantsMessage = (data) => {
-        var message = '';
-        if (data.numUsers === 1) {
-            message += "there's 1 participant";
-        } else {
-            message += "there are " + data.numUsers + " participants";
-        }
-        log(message);
-    }
-
     // Sets the client's username
     const login = () => {
         username = 'Alice'
@@ -175,25 +165,21 @@ $(function () {
         log(message, {
             prepend: true
         });
-        addParticipantsMessage(data);
     });
 
     // Whenever the server emits 'new message', update the chat body
     socket.on('new message', (data) => {
-        console.log(data)
         addChatMessage(data);
     });
 
     // Whenever the server emits 'user joined', log it in the chat body
     socket.on('user joined', (data) => {
         log(data.username + ' joined');
-        addParticipantsMessage(data);
     });
 
     // Whenever the server emits 'user left', log it in the chat body
     socket.on('user left', (data) => {
         log(data.username + ' left');
-        addParticipantsMessage(data);
     });
 
 

@@ -1,5 +1,10 @@
 import { Express } from "express";
 import http from "http";
+import { Socket } from "socket.io";
+
+interface ISocket extends Socket {
+  username?: string;
+}
 
 const createSocket = (app: Express) => {
   const server = http.createServer(app);
@@ -9,26 +14,22 @@ const createSocket = (app: Express) => {
     },
   });
 
-  io.on("connection", (socket: any) => {
+  io.on("connection", (socket: ISocket) => {
     let addedUser = false;
 
     // when the client emits 'new message', this listens and executes
     socket.on("new message", (data: any) => {
       // we tell the client to execute 'new message'
       socket.broadcast.emit("new message", {
-        username: socket.username,
+        username: socket?.username,
         message: data,
       });
     });
 
     // when the client emits 'add user', this listens and executes
-    socket.on("add user", (username: any) => {
-      if (addedUser) return;
-
+    socket.on("add user", (username: string) => {
       // we store the username in the socket session for this client
       socket.username = username;
-      addedUser = true;
-      socket.emit("login", {});
       // echo globally (all clients) that a person has connected
       socket.broadcast.emit("user joined", {
         username: socket.username,
@@ -36,14 +37,7 @@ const createSocket = (app: Express) => {
     });
 
     // when the user disconnects.. perform this
-    socket.on("disconnect", () => {
-      if (addedUser) {
-        // echo globally that this client has left
-        socket.broadcast.emit("user left", {
-          username: socket.username,
-        });
-      }
-    });
+    socket.on("disconnect", () => {});
   });
 
   return server;
