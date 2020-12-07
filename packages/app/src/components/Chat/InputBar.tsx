@@ -6,8 +6,6 @@ import {
   Theme,
   Toolbar,
   InputBase,
-  Button,
-  Grid,
 } from "@material-ui/core";
 import { useHotkeys } from "react-hotkeys-hook";
 
@@ -19,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 3,
       padding: theme.spacing(1, 1),
       color: "#000",
+      flex: 1,
     },
     appBar: {
       top: "auto",
@@ -74,28 +73,25 @@ const InputBar = ({ onSend = () => {} }: any) => {
   return (
     <AppBar className={classes.appBar} color="default">
       <Toolbar className={classes.toolbar}>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Grid item xs>
-            <InputBase
-              multiline
-              className={classes.input}
-              onChange={(val) => setInput(val.target.value)}
-              value={input}
-              inputRef={inputRef}
-            />
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={!input}
-              onClick={handleSend}
-              disableElevation
-            >
-              发送
-            </Button>
-          </Grid>
-        </Grid>
+        <div className="flex space-x-4 w-full items-end">
+          <InputBase
+            multiline
+            className={`w-full bg-white flex-1 px-2 py-1 rounded`}
+            style={{
+              padding: "0.5rem 0.75rem",
+            }}
+            onChange={(val) => setInput(val.target.value)}
+            value={input}
+            inputRef={inputRef}
+          />
+          <button
+            className="py-2 px-4 bg-green-500 text-white rounded text-sm hover:bg-green-600 disabled:opacity-25"
+            disabled={!input}
+            onClick={handleSend}
+          >
+            发送
+          </button>
+        </div>
       </Toolbar>
     </AppBar>
   );
