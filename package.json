@@ -1,0 +1,21 @@
+{
+  "name": "alice",
+  "version": "1.0.0",
+  "description": "AI",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "packages/app/package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vg-land/alice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vg-land/alice/issues"
+  },
+  "homepage": "https://github.com/vg-land/alice#readme"
+}
