@@ -1,14 +1,15 @@
-import createSocket from "./utils/createSocket";
-import express from "express";
-import staticFile from "./middleware/staticFile";
+import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
+import { RedisIoAdapter } from './adapters/socket.adapter';
+import { AppModule } from './app.module';
 
-const app = express();
-const server = createSocket(app);
+async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useWebSocketAdapter(new RedisIoAdapter(app));
+  app.useStaticAssets(join(__dirname, '..', 'static'));
+  await app.listen(4100);
 
-const port = process.env.PORT || 4100;
-
-server.listen(port, () => {
-  console.log("Server listening at port %d", port);
-});
-
-app.use(staticFile);
+  console.log(`Application is running on: ${await app.getUrl()}`);
+}
+bootstrap();
