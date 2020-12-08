@@ -4,7 +4,6 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
-import './nlp';
 
 @WebSocketGateway()
 export class ChatGateway {
