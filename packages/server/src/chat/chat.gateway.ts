@@ -13,7 +13,8 @@ export class ChatGateway {
   users = 0;
 
   // 连接时的钩子
-  async handleConnection() {
+  async handleConnection(client: Socket) {
+    client.emit('message', '欢迎！');
     this.users += 1;
   }
 
@@ -34,6 +35,8 @@ export class ChatGateway {
   async handleMessage(client: Socket, text) {
     if (text.includes('天气')) {
       client.emit('message', '今天天气我也不知道咋样');
+    } else {
+      client.emit('message', '收到你的消息了');
     }
     // client.emit('message', );
   }
