@@ -1,5 +1,4 @@
 import { atom, selector, useRecoilState } from "recoil";
-import { socket } from "../utils/socket";
 
 export const messageListState = atom({
   key: "messageListState",
@@ -28,7 +27,6 @@ export const useMessage = () => {
     }
 
     setList([...list, message]);
-    socket.emit("new message", data);
   };
 
   const getMessage = (data: { message: string; username: string }) => {

@@ -1,13 +1,12 @@
 import React from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import { Paper, List } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 
 import InputBar from "../components/Chat/InputBar";
 import MessageItem from "../components/Chat/MessageItem";
 import { useMessage } from "../store/messages";
 import { userValue } from "../store/user";
 import { useRecoilValue } from "recoil";
-import { useSocket } from "../utils/socket";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,19 +32,16 @@ const Messages: React.FC<Props> = (props: Props) => {
   const classes = useStyles(props);
   const messages = useMessage();
   const user = useRecoilValue(userValue);
-  useSocket();
   return (
     <React.Fragment>
       <Paper square className={classes.paper} elevation={0}>
-        <List className={classes.list}>
-          {messages.list.map((item) => (
-            <MessageItem
-              dataSource={item}
-              isOwn={user.id === item.id}
-              key={item.timestamp}
-            ></MessageItem>
-          ))}
-        </List>
+        {messages.list.map((item) => (
+          <MessageItem
+            dataSource={item}
+            isOwn={user.id === item.id}
+            key={item.timestamp}
+          ></MessageItem>
+        ))}
       </Paper>
       <InputBar onSend={(text: string) => messages.new(text)}></InputBar>
     </React.Fragment>

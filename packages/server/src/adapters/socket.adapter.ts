@@ -6,9 +6,17 @@ import {
 import { DISCONNECT_EVENT } from '@nestjs/websockets/constants';
 import { fromEvent, Observable } from 'rxjs';
 import { filter, first, map, mergeMap, share, takeUntil } from 'rxjs/operators';
+import SocketIO from 'socket.io';
 import { Server as IOServer } from 'socket.io';
 
 export class IoAdapter extends AbstractWsAdapter {
+  constructor(server, options?: Partial<SocketIO.ServerOptions>) {
+    super(server);
+    this.options = options;
+  }
+
+  public options;
+
   public create(
     port: number,
     options?: any & { namespace?: string; server?: any },
@@ -20,8 +28,8 @@ export class IoAdapter extends AbstractWsAdapter {
     return server && isFunction(server.of)
       ? server.of(namespace)
       : namespace
-      ? this.createIOServer(port, opt).of(namespace)
-      : this.createIOServer(port, opt);
+      ? this.createIOServer(port, { ...opt, ...this.options }).of(namespace)
+      : this.createIOServer(port, { ...opt, ...this.options });
   }
 
   public createIOServer(port: number, options?: any): any {

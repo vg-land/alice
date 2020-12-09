@@ -1,37 +1,7 @@
 import React, { useRef, useState } from "react";
-import {
-  AppBar,
-  createStyles,
-  makeStyles,
-  Theme,
-  Toolbar,
-  InputBase,
-} from "@material-ui/core";
+import { InputBase } from "@material-ui/core";
 import { useHotkeys } from "react-hotkeys-hook";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    input: {
-      width: "100%",
-      background: "#fff",
-      borderRadius: 3,
-      padding: theme.spacing(1, 1),
-      color: "#000",
-      flex: 1,
-    },
-    appBar: {
-      top: "auto",
-      bottom: 0,
-    },
-    toolbar: {
-      padding: theme.spacing(1, 1),
-      minHeight: "inherit",
-    },
-  }),
-);
-
 const InputBar = ({ onSend = () => {} }: any) => {
-  const classes = useStyles();
   const inputRef: any = useRef();
   const [input, setInput] = useState("");
 
@@ -71,29 +41,27 @@ const InputBar = ({ onSend = () => {} }: any) => {
   );
 
   return (
-    <AppBar className={classes.appBar} color="default">
-      <Toolbar className={classes.toolbar}>
-        <div className="flex space-x-4 w-full items-end">
-          <InputBase
-            multiline
-            className={`w-full bg-white flex-1 px-2 py-1 rounded`}
-            style={{
-              padding: "0.5rem 0.75rem",
-            }}
-            onChange={(val) => setInput(val.target.value)}
-            value={input}
-            inputRef={inputRef}
-          />
-          <button
-            className="py-2 px-4 bg-green-500 text-white rounded text-sm hover:bg-green-600 disabled:opacity-25"
-            disabled={!input}
-            onClick={handleSend}
-          >
-            发送
-          </button>
-        </div>
-      </Toolbar>
-    </AppBar>
+    <footer className="absolute bottom-0 left-0 right-0 p-2 bg-gray-100">
+      <div className="flex space-x-4 w-full items-end">
+        <InputBase
+          multiline
+          className={`w-full bg-white flex-1 px-2 py-1 rounded`}
+          style={{
+            padding: "0.5rem 0.75rem",
+          }}
+          onChange={(val) => setInput(val.target.value)}
+          value={input}
+          inputRef={inputRef}
+        />
+        <button
+          className="py-2 px-4 bg-green-500 text-white rounded text-sm hover:bg-green-600 disabled:opacity-25"
+          disabled={!input}
+          onClick={handleSend}
+        >
+          发送
+        </button>
+      </div>
+    </footer>
   );
 };
 

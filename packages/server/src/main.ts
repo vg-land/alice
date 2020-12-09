@@ -6,7 +6,13 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useWebSocketAdapter(new IoAdapter(app));
+  app.useWebSocketAdapter(
+    new IoAdapter(app, {
+      cors: {
+        origin: '*',
+      },
+    }),
+  );
   app.useStaticAssets(join(__dirname, '..', 'static'));
   await app.listen(4100);
 
