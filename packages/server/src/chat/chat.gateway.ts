@@ -12,9 +12,16 @@ export class ChatGateway {
 
   users = 0;
 
+  sendMessage(data: string) {
+    this.server.emit('message', {
+      data,
+    });
+  }
+
   // 连接时的钩子
   async handleConnection(client: Socket) {
-    client.emit('message', '欢迎！');
+    this.sendMessage('欢迎');
+    console.log(client);
     this.users += 1;
   }
 
@@ -34,9 +41,9 @@ export class ChatGateway {
   @SubscribeMessage('message')
   async handleMessage(client: Socket, text) {
     if (text.includes('天气')) {
-      client.emit('message', '今天天气我也不知道咋样');
+      this.sendMessage('尚未实现');
     } else {
-      client.emit('message', '收到你的消息了');
+      this.sendMessage('收到你的消息了');
     }
     // client.emit('message', );
   }

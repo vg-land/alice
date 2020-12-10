@@ -28,7 +28,8 @@ const App: React.FC = () => {
     });
 
     socket.on("disconnect", () => {
-      console.log("you have been disconnected");
+      // console.log("you have been disconnected");
+      socket.close()
     });
 
     socket.on("reconnect", () => {

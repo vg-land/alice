@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-import { IoAdapter } from './adapters/socket.adapter';
+import { IoAdapter } from './adapters/io.adapter';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -13,7 +13,7 @@ async function bootstrap() {
       },
     }),
   );
-  app.useStaticAssets(join(__dirname, '..', 'static'));
+  app.useStaticAssets(join(__dirname, '..', 'public'));
   await app.listen(4100);
 
   console.log(`Application is running on: ${await app.getUrl()}`);

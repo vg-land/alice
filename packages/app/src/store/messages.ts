@@ -14,27 +14,25 @@ export const useMessage = () => {
   const [list, setList] = useRecoilState(messageListState);
   const sendMessage = (data: any) => {
     let message = {
-      value: "",
-      timestamp: new Date().getTime(),
+      data: "",
       id: "admin",
       avatar: "123",
     };
     if (typeof data === "string") {
       message = {
         ...message,
-        value: data,
+        data: data,
       };
     }
 
     setList([...list, message]);
   };
 
-  const getMessage = (data: { message: string; username: string }) => {
+  const getMessage = (data: { data: string; username: string }) => {
     const message = {
-      timestamp: new Date().getTime(),
       avatar: "",
       id: data.username,
-      value: data.message,
+      data: data.data,
     };
     setList([...list, message]);
   };
