@@ -1,57 +1,32 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
 
-import Chat from "./pages/chat";
-import WebChat from "./pages/web";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { io } from "socket.io-client";
-import { useMessage } from "./store/messages";
-
-declare const process: {
-  env: {
-    REACT_APP_SOCKET: string;
-  };
-};
+import Chat from "./pages/chat"
+import WebChat from "./pages/web"
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom"
+import React from "react"
 
 const App: React.FC = () => {
-  const message = useMessage();
-
-  useEffect(() => {
-    const socket = io(process.env["REACT_APP_SOCKET"]);
-    socket.on("connect", () => {
-      console.log("connect");
-      socket.emit("add user", "Admin");
-    });
-
-    // Whenever the server emits 'new message', update the chat body
-    socket.on("message", (data: any) => {
-      message.get(data);
-    });
-
-    socket.on("disconnect", () => {
-      // console.log("you have been disconnected");
-      socket.close()
-    });
-
-    socket.on("reconnect", () => {
-      console.log("you have been reconnected");
-    });
-
-    socket.on("reconnect_error", () => {
-      console.log("attempt to reconnect has failed");
-    });
-  }, []);
   return (
     <Router>
       <Switch>
         <Route path="/web">
           <WebChat></WebChat>
         </Route>
-        <Route path="/">
+
+        <Route path="/chat">
           <Chat></Chat>
+        </Route>
+        <Route path="/">
+          <Redirect to="/web"></Redirect>
         </Route>
       </Switch>
     </Router>
-  );
-};
+  )
+}
 
-export default App;
+export default App

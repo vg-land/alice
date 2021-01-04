@@ -1,10 +1,8 @@
-import React from "react";
-import InputBar from "./InputBar";
-import MessageItem from "./MessageItem";
+import React from "react"
+import InputBar from "./InputBar"
+import MessageItem from "./MessageItem"
 
-interface Props {}
-
-export const Web = (props: Props) => {
+export const Web = (props: any) => {
   return (
     <section className="w-full h-full rounded flex flex-col">
       <header className="w-full h-8 bg-gray-200 "></header>
@@ -18,7 +16,7 @@ export const Web = (props: Props) => {
       </main>
       <InputBar></InputBar>
     </section>
-  );
-};
+  )
+}
 
-export default Web;
+export default Web
