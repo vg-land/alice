@@ -1,4 +1,5 @@
 import React from "react"
+import Date from "../Date"
 
 const PostCard = (props: any) => {
   const { value = {} } = props
@@ -21,16 +22,16 @@ const PostCard = (props: any) => {
           at home....
         </p>
         <div className="flex items-center mt-4">
-          <a href="#" className="block relative">
-            <img
-              alt="profil"
-              src="https://picsum.photos/id/638/200/200"
-              className="mx-auto rounded-full h-10 w-10 "
-            />
-          </a>
+          <img
+            alt="profil"
+            src="https://picsum.photos/id/638/200/200"
+            className="rounded-full h-10 w-10 "
+          />
           <div className="flex flex-col justify-between ml-4 text-sm">
             <p className="text-gray-800 dark:text-white">Jean Jacques</p>
-            <p className="text-gray-400 dark:text-gray-300">{value.date}</p>
+            <p className="text-gray-400 dark:text-gray-300">
+              <Date>{value.date}</Date>
+            </p>
           </div>
         </div>
       </div>

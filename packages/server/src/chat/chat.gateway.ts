@@ -21,7 +21,6 @@ export class ChatGateway {
   // 连接时的钩子
   async handleConnection(client: Socket) {
     this.sendMessage('欢迎');
-    console.log(client);
     this.users += 1;
   }
 

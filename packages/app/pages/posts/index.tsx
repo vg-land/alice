@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React from "react"
 import WebLayout from "../../components/Layout/Web"
 import PostCard from "../../components/Post/PostCard"
@@ -5,7 +6,6 @@ import { getSortedPostsData } from "../../lib/posts"
 
 const Posts = (props: any) => {
   const { allPostsData } = props
-  console.log(allPostsData)
   return (
     <WebLayout>
       <div className="flex items-center justify-between mb-8 mx-4">
@@ -27,8 +27,14 @@ const Posts = (props: any) => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 container mx-auto">
-        {allPostsData?.map((item, index) => {
-          return <PostCard key={index} value={item}></PostCard>
+        {allPostsData?.map((item) => {
+          return (
+            <Link href={`/posts/${item.id}`} key={item.id}>
+              <a>
+                <PostCard value={item}></PostCard>
+              </a>
+            </Link>
+          )
         })}
       </div>
     </WebLayout>

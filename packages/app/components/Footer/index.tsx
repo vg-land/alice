@@ -8,7 +8,7 @@ const Footer = (props: any) => {
           <li className="my-2">
             <a
               className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-              href="#"
+              href="https://github.com/vg-land"
             >
               Github
             </a>
