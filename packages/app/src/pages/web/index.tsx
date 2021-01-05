@@ -10,31 +10,22 @@ const WebIndex = () => {
             <div className="flex flex-col sm:flex-row sm:justify-around">
               <div className="w-72 h-screen">
                 <nav className="mt-10 px-6 ">
-                  <a
-                    className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
-                    href="#"
-                  >
+                  <button className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ">
                     <span className="mx-4 text-lg font-normal">Element</span>
                     <span className="flex-grow text-right"></span>
-                  </a>
-                  <a className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-800 dark:text-gray-100 rounded-lg bg-gray-100 dark:bg-gray-600">
+                  </button>
+                  <button className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-800 dark:text-gray-100 rounded-lg bg-gray-100 dark:bg-gray-600">
                     <span className="mx-4 text-lg font-normal">Form</span>
                     <span className="flex-grow text-right"></span>
-                  </a>
-                  <a
-                    className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
-                    href="#"
-                  >
+                  </button>
+                  <button className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ">
                     <span className="mx-4 text-lg font-normal">Commerce</span>
                     <span className="flex-grow text-right"></span>
-                  </a>
-                  <a
-                    className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
-                    href="#"
-                  >
+                  </button>
+                  <button className="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ">
                     <span className="mx-4 text-lg font-normal">Navigation</span>
                     <span className="flex-grow text-right"></span>
-                  </a>
+                  </button>
                 </nav>
               </div>
             </div>
