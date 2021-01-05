@@ -1,8 +1,16 @@
 import React from "react"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
-const Nav = () => {
+const links = [
+  { label: "Home", url: "/" },
+  { label: "Post", url: "/posts" },
+]
+
+const Nav = (props: any) => {
+  const { route } = useRouter()
   return (
-    <nav className="bg-white dark:bg-gray-800  shadow ">
+    <nav className="bg-white dark:bg-gray-800 shadow">
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center justify-between h-16">
           <div className=" flex items-center">
@@ -11,30 +19,19 @@ const Nav = () => {
             </a>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a
-                  className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  href="/#"
-                >
-                  Home
-                </a>
-                <a
-                  className="text-gray-800 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  href="/#"
-                >
-                  Gallery
-                </a>
-                <a
-                  className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  href="/#"
-                >
-                  Content
-                </a>
-                <a
-                  className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  href="/#"
-                >
-                  Contact
-                </a>
+                {links?.map((item) => {
+                  return (
+                    <Link href={item.url} key={item.label}>
+                      <a
+                        className={`${
+                          route === item.url ? "text-gray-800" : "text-gray-300"
+                        } hover:text-gray-800 dark:text-white dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                      >
+                        {item.label}
+                      </a>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -62,42 +59,6 @@ const Nav = () => {
                       </svg>
                     </button>
                   </div>
-                  <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
-                    <div
-                      className="py-1 "
-                      role="menu"
-                      aria-orientation="vertical"
-                      aria-labelledby="options-menu"
-                    >
-                      <a
-                        href="#"
-                        className="block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                        role="menuitem"
-                      >
-                        <span className="flex flex-col">
-                          <span>Settings</span>
-                        </span>
-                      </a>
-                      <a
-                        href="#"
-                        className="block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                        role="menuitem"
-                      >
-                        <span className="flex flex-col">
-                          <span>Account</span>
-                        </span>
-                      </a>
-                      <a
-                        href="#"
-                        className="block  px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                        role="menuitem"
-                      >
-                        <span className="flex flex-col">
-                          <span>Logout</span>
-                        </span>
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -120,30 +81,19 @@ const Nav = () => {
       </div>
       <div className="md:hidden">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a
-            className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            href="/#"
-          >
-            Home
-          </a>
-          <a
-            className="text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium"
-            href="/#"
-          >
-            Gallery
-          </a>
-          <a
-            className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            href="/#"
-          >
-            Content
-          </a>
-          <a
-            className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            href="/#"
-          >
-            Contact
-          </a>
+          {links?.map((item) => {
+            return (
+              <Link href={item.url} key={item.label}>
+                <a
+                  className={`${
+                    route === item.url ? "text-gray-800" : "text-gray-300"
+                  } hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
+                >
+                  {item.label}
+                </a>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </nav>

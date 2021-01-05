@@ -2,14 +2,19 @@ import React from "react"
 
 const Footer = (props: any) => {
   return (
-    <footer className="flex items-center justify-center py-4 shadow-lg border-t" {...props}>
-      <a
-        href="/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        给您拜个早年
-      </a>
+    <footer className="bg-white dark:bg-gray-800 w-full py-4">
+      <div className="max-w-screen-xl mx-auto px-4">
+        <ul className="max-w-screen-md mx-auto text-lg font-light flex flex-wrap justify-between">
+          <li className="my-2">
+            <a
+              className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
+              href="#"
+            >
+              Github
+            </a>
+          </li>
+        </ul>
+      </div>
     </footer>
   )
 }
