@@ -10,8 +10,8 @@ const links = [
 const Nav = (props: any) => {
   const { route } = useRouter()
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow">
-      <div className="max-w-7xl mx-auto px-8">
+    <nav className="bg-white dark:bg-gray-800 shadow mx-auto ">
+      <div className="max-w-screen-lg mx-auto px-8">
         <div className="flex items-center justify-between h-16">
           <div className=" flex items-center">
             <a className="flex-shrink-0" href="/">

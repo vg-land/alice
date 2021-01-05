@@ -2,7 +2,7 @@ import Head from "next/head"
 import React from "react"
 import WebLayout from "../../components/Layout/Web"
 import Date from "../../components/Date"
-import { getAllPostIds, getPostData } from "../../lib/posts"
+import { getAllPostIds, getPostData } from "../../../lib/posts"
 
 const Post = ({ postData }) => {
   return (

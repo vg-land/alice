@@ -2,7 +2,7 @@ import Link from "next/link"
 import React from "react"
 import WebLayout from "../../components/Layout/Web"
 import PostCard from "../../components/Post/PostCard"
-import { getSortedPostsData } from "../../lib/posts"
+import { getSortedPostsData } from "../../../lib/posts"
 
 const Posts = (props: any) => {
   const { allPostsData } = props
