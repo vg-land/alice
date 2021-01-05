@@ -1,11 +1,11 @@
 import Link from "next/link"
 import React from "react"
-import WebLayout from "../../components/Layout/Web"
-import PostCard from "../../components/Post/PostCard"
-import { getSortedPostsData } from "../../../lib/posts"
+import WebLayout from "src/components/Layout/Web"
+import PostCard from "src/components/Post/PostCard"
+import { GetServerSideProps } from "next"
 
 const Posts = (props: any) => {
-  const { allPostsData } = props
+  const { feed } = props
   return (
     <WebLayout>
       <div className="flex items-center justify-between mb-8 mx-4">
@@ -27,7 +27,7 @@ const Posts = (props: any) => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 container mx-auto">
-        {allPostsData?.map((item) => {
+        {feed?.map((item) => {
           return (
             <Link href={`/posts/${item.id}`} key={item.id}>
               <a>
@@ -41,11 +41,13 @@ const Posts = (props: any) => {
   )
 }
 
-export const getStaticProps = async () => {
-  const allPostsData = await getSortedPostsData()
+export const getServerSideProps: GetServerSideProps = async () => {
+  // TODO https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-nextjs-api-routes/pages/api/feed.ts
+  const res = await fetch("http://localhost:3000/api/feed")
+  const feed = await res.json()
   return {
     props: {
-      allPostsData,
+      feed,
     },
   }
 }
