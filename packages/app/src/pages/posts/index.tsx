@@ -42,7 +42,6 @@ const Posts = (props: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // TODO https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-nextjs-api-routes/pages/api/feed.ts
   const res = await fetch("http://localhost:3000/api/feed")
   const feed = await res.json()
   return {
