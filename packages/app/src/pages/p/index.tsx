@@ -1,13 +1,13 @@
 import Link from "next/link"
 import React from "react"
-import WebLayout from "src/components/Layout/Web"
-import PostCard from "src/components/Post/PostCard"
+import HomeLayout from "@/components/Layout"
+import PostCard from "@/components/Post/PostCard"
 import { GetServerSideProps } from "next"
 
 const Posts = (props: any) => {
   const { feed } = props
   return (
-    <WebLayout>
+    <HomeLayout>
       <div className="flex items-center justify-between mb-8 mx-4">
         <p className="text-4xl font-bold text-gray-800">文章列表</p>
         <div className="text-end">
@@ -37,7 +37,7 @@ const Posts = (props: any) => {
           )
         })}
       </div>
-    </WebLayout>
+    </HomeLayout>
   )
 }
 

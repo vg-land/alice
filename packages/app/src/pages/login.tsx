@@ -5,10 +5,7 @@ interface Props {}
 
 const Login = (props: Props) => {
   return (
-    <div
-      className="h-screen w-full bg-cover flex justify-center items-center"
-      style={{ background: "url(https://picsum.photos/id/645/2509/1673)" }}
-    >
+    <div className="h-screen w-full bg-cover flex justify-center items-center bg-blue-400 bg-opacity-30">
       <LoginForm></LoginForm>
     </div>
   )

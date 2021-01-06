@@ -13,9 +13,7 @@ const Alice = (props: any) => {
 
 export const getStaticProps = async () => {
   return {
-    props: {
-      value: "Hello World",
-    },
+    props: {},
   }
 }
 

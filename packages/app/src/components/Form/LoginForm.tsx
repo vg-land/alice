@@ -1,35 +1,60 @@
+import {
+  ErrorMessage,
+  Field,
+  Form,
+  Formik,
+  FormikHelpers,
+  FormikValues,
+} from "formik"
 import Link from "next/link"
 import React from "react"
 
-interface Props {}
-
-const LoginForm = (props: Props) => {
+const LoginForm = (props: any) => {
+  const { form = { email: "", password: "" } } = props
   return (
-    <form className="max-w-sm p-10 bg-white bg-opacity-25 rounded-lg shadow-lg space-y-4">
-      <p className="text-white mb-4 font-light text-center text-2xl">登录</p>
-      <input
-        type="text"
-        className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-        placeholder="email"
-      />
-      <input
-        type="password"
-        className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-        placeholder="password"
-      />
-      <button
-        type="submit"
-        className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 "
-      >
-        登录
-      </button>
-      <div className="text-center text-gray-500 font-light text-sm">
-        没有账号？
-        <Link href="/register">
-          <a className="hover:text-gray-800">去注册</a>
-        </Link>
-      </div>
-    </form>
+    <Formik
+      initialValues={form}
+      onSubmit={(
+        values: FormikValues,
+        { setSubmitting }: FormikHelpers<FormikValues>,
+      ) => {
+        setTimeout(() => {
+          console.log(values)
+          setSubmitting(false)
+        }, 2000)
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form className="max-w-sm p-10 bg-white bg-opacity-25 rounded-lg shadow-lg space-y-4">
+          <p className="text-white mb-4 font-light text-center text-2xl">
+            登录
+          </p>
+          <Field
+            type="text"
+            name="email"
+            className="input"
+            placeholder="账号"
+          />
+          <ErrorMessage name="email" component="div"></ErrorMessage>
+          <Field
+            type="password"
+            name="password"
+            className="input"
+            placeholder="密码"
+          />
+          <ErrorMessage name="password" component="div"></ErrorMessage>
+          <button type="submit" className="button" disabled={isSubmitting}>
+            登录
+          </button>
+          <div className="text-center text-gray-500 font-light text-sm">
+            没有账号？
+            <Link href="/register">
+              <a className="hover:text-gray-800">去注册</a>
+            </Link>
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 }
 

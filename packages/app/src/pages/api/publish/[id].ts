@@ -1,13 +1,15 @@
 import prisma from "lib/prisma"
 import { NextApiRequest, NextApiResponse } from "next"
 
+// PUT /api/publish/:id
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
+  const postId = req.query.id
+  const post = await prisma.post.update({
+    where: { id: Number(postId) },
+    data: { published: true },
   })
-
-  res.json(posts)
+  res.json(post)
 }

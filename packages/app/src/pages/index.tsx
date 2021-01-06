@@ -1,13 +1,13 @@
-import Head from "next/head"
 import React from "react"
-import Layout from "../components/Layout/Web"
+import Layout from "@/components/Layout"
 
-export default function Home(props: any) {
+const Index = (props: any) => {
+  const { feed } = props
   return (
     <Layout>
-      <Head>
-        <title>Home</title>
-      </Head>
+      
     </Layout>
   )
 }
+
+export default Index
