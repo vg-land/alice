@@ -1,11 +1,4 @@
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikHelpers,
-  FormikValues,
-} from "formik"
+import { Field, Form, Formik, FormikHelpers, FormikValues } from "formik"
 import Link from "next/link"
 import React from "react"
 
@@ -41,8 +34,8 @@ const LoginForm = (props: Props) => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form className="max-w-sm p-10 bg-white bg-opacity-25 rounded-lg shadow-lg space-y-4">
-          <p className="text-white mb-4 font-light text-center text-2xl">
+        <Form className="max-w-sm p-10 bg-white rounded-lg shadow-lg space-y-4">
+          <p className="text-gray-900 mb-4 font-light text-center text-2xl">
             登录
           </p>
           <Field

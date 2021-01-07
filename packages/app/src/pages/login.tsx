@@ -8,7 +8,7 @@ interface Props {}
 const Login = (props: Props) => {
   const router = useRouter()
   return (
-    <div className="h-screen w-full bg-cover flex justify-center items-center bg-blue-400 bg-opacity-30">
+    <div className="h-screen w-full bg-cover flex justify-center items-center bg-gray-200">
       <LoginForm onSubmit={() => router.replace("/")}></LoginForm>
     </div>
   )
