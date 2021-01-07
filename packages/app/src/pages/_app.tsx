@@ -4,9 +4,9 @@ import "@/styles/globals.scss"
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    // <Provider session={pageProps?.session}>
+    <Provider session={pageProps?.session}>
       <Component {...pageProps} />
-    // </Provider>
+    </Provider>
   )
 }
 

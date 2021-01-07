@@ -1,3 +1,13 @@
+/*
+  Warnings:
+
+  - You are about to drop the `Account` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `Post` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `Profile` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `Session` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
+
+*/
 -- CreateTable
 CREATE TABLE "posts" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -14,11 +24,19 @@ CREATE TABLE "posts" (
 -- CreateTable
 CREATE TABLE "users" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT,
     "email" TEXT NOT NULL,
     "email_verified" DATETIME,
-    "name" TEXT,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "profiles" (
+    "bio" TEXT,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER NOT NULL,
+    FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -47,18 +65,36 @@ CREATE TABLE "sessions" (
     "updated_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- CreateTable
-CREATE TABLE "verification_requests" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "identifier" TEXT NOT NULL,
-    "token" TEXT NOT NULL,
-    "expires" DATETIME NOT NULL,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+-- DropTable
+PRAGMA foreign_keys=off;
+DROP TABLE "Account";
+PRAGMA foreign_keys=on;
+
+-- DropTable
+PRAGMA foreign_keys=off;
+DROP TABLE "Post";
+PRAGMA foreign_keys=on;
+
+-- DropTable
+PRAGMA foreign_keys=off;
+DROP TABLE "Profile";
+PRAGMA foreign_keys=on;
+
+-- DropTable
+PRAGMA foreign_keys=off;
+DROP TABLE "Session";
+PRAGMA foreign_keys=on;
+
+-- DropTable
+PRAGMA foreign_keys=off;
+DROP TABLE "User";
+PRAGMA foreign_keys=on;
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users.email_unique" ON "users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "profiles.user_id_unique" ON "profiles"("user_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "accounts.compound_id_unique" ON "accounts"("compound_id");
@@ -77,6 +113,3 @@ CREATE UNIQUE INDEX "sessions.session_token_unique" ON "sessions"("session_token
 
 -- CreateIndex
 CREATE UNIQUE INDEX "sessions.access_token_unique" ON "sessions"("access_token");
-
--- CreateIndex
-CREATE UNIQUE INDEX "verification_requests.token_unique" ON "verification_requests"("token");

@@ -9,19 +9,35 @@ import {
 import Link from "next/link"
 import React from "react"
 
-const LoginForm = (props: any) => {
-  const { form = { email: "", password: "" } } = props
+interface Props {
+  onSubmit?: () => void
+  form?: {
+    account: string
+    password: string
+  }
+}
+
+const handleLogin = async (value) => {
+  const res = await fetch("http://localhost:3000/api/login", {
+    method: "POST",
+    body: JSON.stringify(value),
+  })
+  console.log(res)
+}
+
+const LoginForm = (props: Props) => {
   return (
     <Formik
-      initialValues={form}
-      onSubmit={(
+      initialValues={{
+        account: "",
+        password: "",
+      }}
+      onSubmit={async (
         values: FormikValues,
         { setSubmitting }: FormikHelpers<FormikValues>,
       ) => {
-        setTimeout(() => {
-          console.log(values)
-          setSubmitting(false)
-        }, 2000)
+        await handleLogin(values)
+        setSubmitting(false)
       }}
     >
       {({ isSubmitting }) => (
@@ -31,18 +47,17 @@ const LoginForm = (props: any) => {
           </p>
           <Field
             type="text"
-            name="email"
+            name="account"
+            autoComplete="account"
             className="input"
             placeholder="账号"
           />
-          <ErrorMessage name="email" component="div"></ErrorMessage>
           <Field
             type="password"
             name="password"
             className="input"
             placeholder="密码"
           />
-          <ErrorMessage name="password" component="div"></ErrorMessage>
           <button type="submit" className="button" disabled={isSubmitting}>
             登录
           </button>
