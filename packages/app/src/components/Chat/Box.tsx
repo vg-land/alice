@@ -1,18 +1,24 @@
 import React from "react"
+import ChatBot from "./ChatBot"
 
 interface Props {}
 
 const ChatBox = (props: Props) => {
+  const steps = [
+    {
+      id: "0",
+      message: "Welcome to react chatbot!",
+      trigger: "1",
+    },
+    {
+      id: "1",
+      message: "Bye!",
+      end: true,
+    },
+  ]
   return (
     <>
-      <div className="p-4 bg-white rounded h-64">
-        <div className="">
-          <div className="bg-gray-200 text-white p-2 px-4">111</div>
-        </div>
-      </div>
-      <div className="p-4 bg-gray-100">
-          请输入内容
-      </div>
+      <ChatBot steps={steps}></ChatBot>
     </>
   )
 }
