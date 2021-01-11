@@ -1,51 +1,52 @@
-import { useSession } from "next-auth/client"
+import { Field, Form, Formik } from "formik"
 import React from "react"
 
-interface Props {}
+interface Props {
+  source?: {
+    email?: string
+    name?: string
+    phone?: string
+  }
+}
 
 const ProfileForm = (props: Props) => {
-  const [session, loading] = useSession()
-  console.log(session)
+  const { source } = props
   return (
-    <div className="shadow-lg rounded-2xl w-80 bg-white dark:bg-gray-800">
-      <img
-        alt="profile"
-        src="https://picsum.photos/id/480/200/200"
-        className="rounded-t-lg h-28 w-full mb-4 object-cover"
-      />
-      <div className="flex flex-col items-center justify-center p-4 -mt-16">
-        <a href="#" className="block relative">
-          <img
-            alt="profile"
-            src={session?.user?.image}
-            className="mx-auto rounded-full h-16 w-16  border-2 border-white dark:border-gray-800"
-          />
-        </a>
-        <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
-          {session?.user?.name}
-        </p>
-        <p className="text-gray-400 text-xs mb-4">{session?.user?.email}</p>
-        <p className="text-xs p-2 bg-pink-500 text-white px-4 rounded-full">
-          大会员
-        </p>
-        <div className="rounded-lg p-2 w-full mt-4">
-          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-200">
-            <p className="flex flex-col">
-              文章
-              <span className="text-black dark:text-white font-bold">34</span>
-            </p>
-            <p className="flex flex-col">
-              关注
-              <span className="text-black dark:text-white font-bold">455</span>
-            </p>
-            <p className="flex flex-col">
-              点赞
-              <span className="text-black dark:text-white font-bold">230</span>
-            </p>
+    <Formik
+      onSubmit={(value) => {
+        console.log(value)
+      }}
+      initialValues={source}
+    >
+      {() => (
+        <Form className="shadow-lg rounded-md w-80 bg-white dark:bg-gray-800 p-4 space-y-4">
+          <h1 className="font-light self-center text-xl sm:text-2xl text-gray-600 dark:text-white mb-6 text-center">
+            个人资料
+          </h1>
+          <div className="flex items-center space-x-4">
+            <label className="w-12 block" htmlFor="name">
+              用户名
+            </label>
+            <Field name="name" type="text" className="input" disabled></Field>
           </div>
-        </div>
-      </div>
-    </div>
+          <div className="flex items-center space-x-4">
+            <label className="w-12 block" htmlFor="email">
+              邮箱
+            </label>
+            <Field name="email" type="text" className="input" disabled></Field>
+          </div>
+          <div className="flex items-center space-x-4">
+            <label className="w-12 block" htmlFor="email">
+              手机号
+            </label>
+            <Field name="phone" type="text" className="input"></Field>
+          </div>
+          <button type="submit" className="button">
+            保存
+          </button>
+        </Form>
+      )}
+    </Formik>
   )
 }
 
