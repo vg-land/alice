@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ProfileCard = (props: Props) => {
-  const { source } = props
+  const { source = {} } = props
   return (
     <div className="shadow-lg rounded-2xl w-80 bg-white dark:bg-gray-800">
       <img
@@ -22,12 +22,12 @@ const ProfileCard = (props: Props) => {
         <a href="#" className="block relative">
           <img
             alt="profile"
-            src={source.image}
+            src={source?.image}
             className="mx-auto rounded-full h-16 w-16  border-2 border-white dark:border-gray-800"
           />
         </a>
         <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
-          {source.name}
+          {source?.name}
         </p>
         <p className="text-gray-400 text-xs mb-4">{source.email}</p>
         <p className="text-xs p-2 bg-pink-500 text-white px-4 rounded-full">
