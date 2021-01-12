@@ -73,15 +73,18 @@ const WeatherCard = (props: Props) => {
         {weather.weatherList
           .filter((item) => item.dateDesp === "今天")
           .map((item) => (
-            <div className="absolute left-0 right-0 top-0 bottom-0 p-4 flex items-center justify-between text-white">
+            <div
+              className="absolute left-0 right-0 top-0 bottom-0 p-4 flex items-center justify-between text-white"
+              key={item.date}
+            >
               <div className="">
                 <p className="text-2xl">
                   {item.minTemperature}~{item.maxTemperature}℃
                 </p>
-                <p className="flex space-x-1">
+                <div className="flex space-x-2 items-center">
                   <span>{item.weather}</span>
-                  <div>{item.qualityLevel}</div>
-                </p>
+                  <div className="bg-yellow-400 text-white px-1 rounded">{item.qualityLevel}</div>
+                </div>
                 <p className="space-x-1">
                   <span>{item.dateDesp}</span>
                   <span>{item.date}</span>
@@ -101,7 +104,10 @@ const WeatherCard = (props: Props) => {
         {weather.weatherList
           .filter((item) => item.dateDesp !== "今天")
           .map((item) => (
-            <div className="flex items-center text-gray-800 space-x-4">
+            <div
+              className="flex items-center text-gray-800 space-x-4"
+              key={item.date}
+            >
               <div className="flex-2">
                 {item.weekDay}
                 {item.date}
