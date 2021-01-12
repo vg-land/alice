@@ -13,7 +13,6 @@ import {
   FloatingIcon,
   Footer,
   Input,
-  SubmitButton,
 } from "./components"
 import Recognition from "./recognition"
 import { ChatIcon, CloseIcon, SubmitIcon, MicIcon } from "./icons"
@@ -710,13 +709,11 @@ class ChatBot extends Component {
           </FloatButton>
         )}
         <ChatBotContainer
-          className="rsc-container"
+          className="rsc-container h-40 overflow-auto"
           floating={floating}
           floatingStyle={floatingStyle}
           opened={opened}
           style={style}
-          width={width}
-          height={height}
         >
           {!hideHeader && header}
           <Content
@@ -736,7 +733,7 @@ class ChatBot extends Component {
                   type="textarea"
                   style={inputStyle}
                   ref={this.setInputRef}
-                  className="rsc-input"
+                  className="rsc-input px-4 py-2 w-full"
                   placeholder={inputInvalid ? "" : inputPlaceholder}
                   onKeyPress={this.handleKeyPress}
                   onChange={this.onValueChange}
@@ -748,11 +745,11 @@ class ChatBot extends Component {
                   {...inputAttributesOverride}
                 />
               }
-              <div style={controlStyle} className="rsc-controls">
+              <div style={controlStyle} className="rsc-controls w-20">
                 {!currentStep.hideExtraControl && customControl}
                 {!hideSubmitButton && (
-                  <SubmitButton
-                    className="rsc-submit-button"
+                  <SubmitIcon
+                    className="rsc-submit-button bg-indigo-500 text-white w-full"
                     style={submitButtonStyle}
                     onClick={this.handleSubmitButton}
                     invalid={inputInvalid}
@@ -760,7 +757,7 @@ class ChatBot extends Component {
                     speaking={speaking}
                   >
                     {icon}
-                  </SubmitButton>
+                  </SubmitIcon>
                 )}
               </div>
             </Footer>
@@ -835,7 +832,7 @@ ChatBot.defaultProps = {
   className: "",
   contentStyle: {},
   customStyle: {},
-  controlStyle: { position: "absolute", right: "0", top: "0" },
+  controlStyle: {},
   customDelay: 1000,
   enableMobileAutoFocus: false,
   enableSmoothScroll: false,
