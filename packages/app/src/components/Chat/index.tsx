@@ -3,41 +3,11 @@ import Chat, { Bubble, MessageProps, useMessages } from "@chatui/core"
 // 引入样式
 import "@chatui/core/dist/index.css"
 import Head from "next/head"
-import WeatherCard from "../Card/WeatherCard"
+import { initialMessages, defaultQuickReplies } from "./config"
 
-const initialMessages: Omit<MessageProps, "_id">[] = [
-  {
-    type: "text",
-    content: { text: "主人好，我是智能助理，你的贴心小助手~" },
-  },
-  {
-    type: "image",
-    content: {
-      picUrl: "https://picsum.photos/id/251/200/200",
-    },
-  },
-  {
-    type: "weather",
-    content: {},
-  },
-]
-
-// 默认快捷短语，可选
-const defaultQuickReplies = [
-  {
-    icon: "apps",
-    name: "天气",
-    isHighlight: true,
-  },
-  {
-    name: "当前地址",
-    isNew: true,
-  },
-]
-
-const ChatComponent = (props) => {
-  const { messages, appendMsg, setTyping } = useMessages(initialMessages)
-
+const MyChat = (props) => {
+  const ctx = useMessages(initialMessages)
+  const { messages, appendMsg, setTyping } = ctx
   const handleSend = (type, val) => {
     if (type === "text" && val.trim()) {
       appendMsg({
@@ -71,8 +41,8 @@ const ChatComponent = (props) => {
             <img src={content.picUrl} alt="" />
           </Bubble>
         )
-      case "weather":
-        return <WeatherCard></WeatherCard>
+      case "component":
+        return content.render()
       default:
         return null
     }
@@ -80,19 +50,10 @@ const ChatComponent = (props) => {
 
   // 快捷短语回调，可根据 item 数据做出不同的操作，这里以发送文本消息为例
   const handleQuickReplyClick = (item) => {
-    switch (item.name) {
-      case "天气":
-        appendMsg({
-          type: "weather",
-          content: {
-            data: "xxx",
-          },
-        })
-        break
-      default:
-        handleSend("text", item.name)
-        break
+    if (item.handleClick) {
+      return item.handleClick({ val: item.name, ctx })
     }
+    return handleSend("text", item.name)
   }
 
   return (
@@ -117,4 +78,4 @@ const ChatComponent = (props) => {
   )
 }
 
-export default ChatComponent
+export default MyChat
