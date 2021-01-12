@@ -5,9 +5,9 @@ const Chat = dynamic(() => import("@/components/Chat"), { ssr: false })
 
 const IndexPage = () => {
   return (
-    <Layout>
+    <div className="h-screen">
       <Chat></Chat>
-    </Layout>
+    </div>
   )
 }
 
