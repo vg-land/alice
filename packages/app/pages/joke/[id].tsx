@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next"
 import prisma from "lib/prisma"
 import { Joke } from "@prisma/client"
 import { useRouter } from "next/router"
+import { isNumber } from "lodash"
 
 interface Props {
   data: Joke
@@ -29,16 +30,23 @@ const JokeUpdate: React.FC<Props> = (props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const data = await prisma.joke.findUnique({
-    where: {
-      id: Number(params.id),
-    },
-  })
-  return {
-    props: {
-      data: JSON.parse(JSON.stringify(data)),
-    },
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  res,
+}) => {
+  if (Number.isNaN(Number(params.id))) {
+    res.end()
+  } else {
+    const data = await prisma.joke.findUnique({
+      where: {
+        id: Number(params.id),
+      },
+    })
+    return {
+      props: {
+        data: JSON.parse(JSON.stringify(data)),
+      },
+    }
   }
 }
 

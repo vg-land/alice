@@ -18,7 +18,12 @@ const JokeForm: React.FC<Props> = (props) => {
   const router = useRouter()
 
   return (
-    <Formik initialValues={props.value} onSubmit={props.onSubmit}>
+    <Formik
+      initialValues={props.value}
+      onSubmit={(values, action) => {
+        props.onSubmit(values, action)
+      }}
+    >
       {({ isSubmitting }) => (
         <Form>
           <Field
@@ -28,6 +33,7 @@ const JokeForm: React.FC<Props> = (props) => {
             placeholder="请输入"
             className="p-2 my-2 border-gray-300 border-2 rounded w-full"
             name="content"
+            required
           />
           <div className="space-x-4">
             <button
