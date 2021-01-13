@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/Form/RegisterForm"
+import RegisterForm from "components/Form/RegisterForm"
 import React from "react"
 
 interface Props {}

@@ -1,7 +1,7 @@
 import React from "react"
 import { GetServerSideProps } from "next"
-import Layout from "@/components/Layout"
-import Post from "@/components/Post"
+import Layout from "components/Layout"
+import Post from "components/Post"
 import prisma from "lib/prisma"
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {

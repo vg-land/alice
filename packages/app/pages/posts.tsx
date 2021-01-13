@@ -1,7 +1,7 @@
 import Link from "next/link"
 import React from "react"
-import HomeLayout from "@/components/Layout"
-import PostCard from "@/components/Post/PostCard"
+import HomeLayout from "components/Layout"
+import PostCard from "components/Post/PostCard"
 import { GetServerSideProps } from "next"
 
 const Posts = (props: any) => {

@@ -66,6 +66,8 @@ const MyChat = (props) => {
 
         <script src="//g.alicdn.com/chatui/icons/0.2.7/index.js"></script>
       </Head>
+
+      
       <Chat
         navbar={{ title: "智能助理" }}
         messages={messages}

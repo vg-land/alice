@@ -1,4 +1,4 @@
-import LoginForm from "@/components/Form/LoginForm"
+import LoginForm from "components/Form/LoginForm"
 import { GetServerSideProps, GetServerSidePropsContext } from "next"
 import { useRouter } from "next/router"
 import React from "react"

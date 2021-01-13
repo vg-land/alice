@@ -1,7 +1,7 @@
 import Head from "next/head"
 import React from "react"
-import HomeLayout from "@/components/Layout"
-import Date from "@/components/Date"
+import HomeLayout from "components/Layout"
+import Date from "components/Date"
 import { GetServerSideProps } from "next"
 import ReactMarkdown from "react-markdown"
 

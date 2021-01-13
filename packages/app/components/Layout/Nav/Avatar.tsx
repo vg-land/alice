@@ -1,9 +1,9 @@
 import { signIn, useSession } from "next-auth/client"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
-import ProfileCard from "@/components/Card/ProfileCard"
+import ProfileCard from "components/Card/ProfileCard"
 import dynamic from "next/dynamic"
-const Popover = dynamic(() => import("@/components/Popover"), { ssr: false })
+const Popover = dynamic(() => import("components/Popover"), { ssr: false })
 
 interface Props {}
 

@@ -1,5 +1,5 @@
-import ProfileForm from "@/components/Form/ProfileForm"
-import Layout from "@/components/Layout"
+import ProfileForm from "components/Form/ProfileForm"
+import Layout from "components/Layout"
 import React from "react"
 import useSWR from "swr"
 
