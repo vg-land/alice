@@ -45,7 +45,6 @@ const JokeForm: React.FC<Props> = (props) => {
             </button>
             <button
               className="bg-gray-100 py-4 px-8"
-              onClick={() => router.back()}
             >
               取消
             </button>

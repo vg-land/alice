@@ -1,5 +1,4 @@
 import { MessageProps } from "@chatui/core"
-import JokeCard from "../Card/JokeCard"
 import WeatherCard from "../Card/WeatherCard"
 import Help from "./components/Help"
 
@@ -42,12 +41,15 @@ export const defaultQuickReplies: any[] = [
   {
     name: "讲个笑话",
     isNew: true,
-    handleClick: ({ ctx }) => {
-      const { appendMsg } = ctx
+    handleClick: async ({ ctx }) => {
+      const { appendMsg, setTyping } = ctx
+      setTyping(true)
+      const res = await fetch("/api/joke")
+      const data = await res.text()
       appendMsg({
-        type: "component",
+        type: "text",
         content: {
-          render: JokeCard,
+          text: data,
         },
       })
     },

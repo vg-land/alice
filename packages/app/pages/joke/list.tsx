@@ -19,19 +19,26 @@ const JokePage = (props: Props) => {
           </button>
         </Link>
       </div>
-      {props.source.map((item) => (
-        <Link href={`/joke/${item.id}`} key={item.id}>
-          <div className="p-4 bg-gray-100 cursor-pointer" title={item.content}>
-            {item.content}
-          </div>
-        </Link>
-      ))}
+      <section className="space-y-2">
+        {props.source.map((item) => (
+          <Link href={`/joke/${item.id}`} key={item.id}>
+            <div
+              className="p-4 bg-gray-100 cursor-pointer"
+              title={item.content}
+            >
+              {item.content}
+            </div>
+          </Link>
+        ))}
+      </section>
     </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const data = await prisma.joke.findMany({})
+  const data = await prisma.joke.findMany({
+    take: 10,
+  })
 
   return {
     props: { source: JSON.parse(JSON.stringify(data)) },
