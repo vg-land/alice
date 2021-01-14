@@ -52,6 +52,20 @@ export const defaultQuickReplies: any[] = [
       })
     },
   },
+  {
+    name: "随机图片",
+    isNew: true,
+    handleClick: ({ ctx }) => {
+      const { appendMsg } = ctx
+      const random = Math.random().toString(32).slice(2)
+      appendMsg({
+        type: "image",
+        content: {
+          picUrl: `//picsum.photos/300/200?random=${random}`,
+        },
+      })
+    },
+  },
 ]
 
 // 默认消息
@@ -59,15 +73,5 @@ export const initialMessages: Omit<MessageProps, "_id">[] = [
   {
     type: "text",
     content: { text: "主人好，我是智能助理，你的贴心小助手~" },
-  },
-  {
-    type: "image",
-    content: {
-      picUrl: "https://picsum.photos/id/251/200/200",
-    },
-  },
-  {
-    type: "weather",
-    content: {},
   },
 ]
