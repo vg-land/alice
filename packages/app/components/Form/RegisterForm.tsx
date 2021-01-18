@@ -3,17 +3,14 @@ import React from "react"
 
 interface Props {}
 
-const RegisterForm = (props: Props) => {
+const RegisterForm: React.FC<Props> = (props) => {
   return (
     <form className="max-w-sm p-10 bg-white bg-opacity-25 rounded-lg shadow-lg space-y-4">
       <p className="text-white mb-4 font-light text-center text-2xl">注册</p>
       <input type="text" className="input" placeholder="account" />
       <input type="password" className="input" placeholder="password" />
       <input type="password" className="input" placeholder="password confirm" />
-      <button
-        type="submit"
-        className="button"
-      >
+      <button type="submit" className="button">
         登录
       </button>
       <div className="text-center text-gray-500 font-light text-sm">

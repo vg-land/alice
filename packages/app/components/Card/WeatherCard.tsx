@@ -61,7 +61,7 @@ const weather = {
   ],
 }
 
-const WeatherCard = (props: Props) => {
+const WeatherCard: React.FC<Props> = (props) => {
   return (
     <div className="overflow-hidden rounded-lg h-90 w-80 cursor-pointer relative">
       <div className="relative bg-blue-500">
@@ -83,7 +83,9 @@ const WeatherCard = (props: Props) => {
                 </p>
                 <div className="flex space-x-2 items-center">
                   <span>{item.weather}</span>
-                  <div className="bg-yellow-400 text-white px-1 rounded">{item.qualityLevel}</div>
+                  <div className="bg-yellow-400 text-white px-1 rounded">
+                    {item.qualityLevel}
+                  </div>
                 </div>
                 <p className="space-x-1">
                   <span>{item.dateDesp}</span>

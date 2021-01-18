@@ -7,7 +7,7 @@ const Popover = dynamic(() => import("components/Popover"), { ssr: false })
 
 interface Props {}
 
-const Avatar = (props: Props) => {
+const Avatar: React.FC<Props> = (props) => {
   const [session] = useSession()
   const router = useRouter()
 

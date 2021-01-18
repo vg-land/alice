@@ -1,13 +1,17 @@
-import { MessageProps } from "@chatui/core"
+import { MessageProps, QuickReplyItemProps } from "@chatui/core"
 import WeatherCard from "../Card/WeatherCard"
 import Help from "./components/Help"
 
+interface QuickRepliesProps extends QuickReplyItemProps {
+  onClick?(obj: { ctx: any; value?: any }, index: number): any
+}
+
 // 默认快捷短语，可选
-export const defaultQuickReplies: any[] = [
+export const defaultQuickReplies: QuickRepliesProps[] = [
   {
     icon: "apps",
     name: "天气",
-    handleClick: ({ ctx, val }) => {
+    onClick: ({ ctx }) => {
       const { appendMsg, setTyping } = ctx
       appendMsg({
         type: "text",
@@ -28,7 +32,7 @@ export const defaultQuickReplies: any[] = [
     name: "帮助",
     isNew: true,
     isHighlight: true,
-    handleClick: ({ ctx }) => {
+    onClick: ({ ctx }) => {
       const { appendMsg } = ctx
       appendMsg({
         type: "component",
@@ -41,7 +45,7 @@ export const defaultQuickReplies: any[] = [
   {
     name: "讲个笑话",
     isNew: true,
-    handleClick: async ({ ctx }) => {
+    onClick: async ({ ctx }) => {
       const { appendMsg, setTyping } = ctx
       setTyping(true)
       const res = await fetch("/api/joke")
@@ -57,7 +61,7 @@ export const defaultQuickReplies: any[] = [
   {
     name: "随机图片",
     isNew: true,
-    handleClick: ({ ctx }) => {
+    onClick: ({ ctx }) => {
       const { appendMsg } = ctx
       const random = Math.random().toString(32).slice(2)
       appendMsg({

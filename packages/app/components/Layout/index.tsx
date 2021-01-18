@@ -2,10 +2,12 @@ import React from "react"
 import Footer from "../Footer"
 import Nav from "./Nav"
 
-const HomeLayout = (props: any) => {
+interface Props {}
+
+const HomeLayout: React.FC<Props> = (props) => {
   return (
     <>
-      <Nav className="max-w-screen-lg"></Nav>
+      <Nav></Nav>
       <main className="max-w-screen-lg mx-auto p-8 min-h-screen" {...props}>
         {props.children}
       </main>

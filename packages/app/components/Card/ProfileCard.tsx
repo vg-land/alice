@@ -9,7 +9,7 @@ interface Props {
   }
 }
 
-const ProfileCard = (props: Props) => {
+const ProfileCard: React.FC<Props> = (props) => {
   const { source = {} } = props
   return (
     <div className="shadow-lg rounded-2xl w-80 bg-white dark:bg-gray-800">

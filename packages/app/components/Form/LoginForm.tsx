@@ -18,7 +18,7 @@ const handleLogin = async (value) => {
   console.log(res)
 }
 
-const LoginForm = (props: Props) => {
+const LoginForm: React.FC<Props> = (props) => {
   return (
     <Formik
       initialValues={{

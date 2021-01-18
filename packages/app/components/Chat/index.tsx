@@ -4,6 +4,7 @@ import Chat, { Bubble, MessageProps, useMessages } from "@chatui/core"
 import "@chatui/core/dist/index.css"
 import Head from "next/head"
 import { initialMessages, defaultQuickReplies } from "./config"
+import { Console } from "console"
 
 const MyChat = (props) => {
   const ctx = useMessages(initialMessages)
@@ -30,6 +31,7 @@ const MyChat = (props) => {
 
   // 根据消息类型下渲染
   const renderMessageContent = (msg: MessageProps) => {
+    // console.log(msg)
     const { type, content } = msg
     // 根据消息类型来渲染
     switch (type) {
@@ -50,8 +52,8 @@ const MyChat = (props) => {
 
   // 快捷短语回调，可根据 item 数据做出不同的操作，这里以发送文本消息为例
   const handleQuickReplyClick = (item) => {
-    if (item.handleClick) {
-      return item.handleClick({ val: item.name, ctx })
+    if (item.onClick) {
+      return item?.onClick({ value: item.name, ctx })
     }
     return handleSend("text", item.name)
   }
@@ -67,7 +69,6 @@ const MyChat = (props) => {
         <script src="//g.alicdn.com/chatui/icons/0.2.7/index.js"></script>
       </Head>
 
-      
       <Chat
         navbar={{ title: "智能助理" }}
         messages={messages}

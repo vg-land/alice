@@ -9,7 +9,7 @@ interface Props {
   }
 }
 
-const ProfileForm = (props: Props) => {
+const ProfileForm: React.FC<Props> = (props) => {
   const { source } = props
   return (
     <Formik

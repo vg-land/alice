@@ -1,6 +1,8 @@
 import React from "react"
 
-const Footer = (props: any) => {
+interface Props {}
+
+const Footer: React.FC<Props> = (props) => {
   return (
     <footer className="bg-white dark:bg-gray-800 w-full py-4">
       <ul className="max-w-screen-lg mx-auto text-lg font-light flex flex-wrap justify-between">

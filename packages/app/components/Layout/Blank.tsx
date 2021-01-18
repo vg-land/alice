@@ -1,6 +1,8 @@
 import React from "react"
 
-const Blank = (props: any) => {
+interface Props {}
+
+const Blank: React.FC<Props> = (props) => {
   return <>{props.children}</>
 }
 

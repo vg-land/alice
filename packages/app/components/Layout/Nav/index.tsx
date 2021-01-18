@@ -9,7 +9,9 @@ const links = [
   { label: "Post", url: "/posts" },
 ]
 
-const Nav = (props: any) => {
+interface Props {}
+
+const Nav: React.FC<Props> = (props) => {
   const router = useRouter()
   const { route } = router
   const [session, loading] = useSession()
