@@ -1173,20 +1173,25 @@
   resolved "https://registry.npm.taobao.org/@types/mime/download/@types/mime-2.0.3.tgz#c893b73721db73699943bfc3653b1deb7faa4a3a"
   integrity sha1-yJO3NyHbc2mZQ7/DZTsd63+qSjo=
 
-"@types/next-auth@^3.1.20":
-  version "3.1.20"
-  resolved "https://registry.npm.taobao.org/@types/next-auth/download/@types/next-auth-3.1.20.tgz#09f3b7220c2d380de80b82b6ffe6fa9f841f2255"
-  integrity sha1-CfO3IgwtOA3oC4K2/+b6n4QfIlU=
+"@types/next-auth@^3.1.21":
+  version "3.1.21"
+  resolved "https://registry.npm.taobao.org/@types/next-auth/download/@types/next-auth-3.1.21.tgz#57fb08feb3dc888c7e942a3efaa927179f34adf0"
+  integrity sha1-V/sI/rPciIx+lCo++qknF580rfA=
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
     jose "^1.28.0"
     typeorm "^0.2.24"
 
-"@types/node@*", "@types/node@^14.14.11", "@types/node@^14.14.20", "@types/node@^14.14.7":
+"@types/node@*", "@types/node@^14.14.11", "@types/node@^14.14.7":
   version "14.14.20"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.14.20.tgz?cache=0&sync_timestamp=1609792088183&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-14.14.20.tgz#f7974863edd21d1f8a494a73e8e2b3658615c340"
   integrity sha1-95dIY+3SHR+KSUpz6OKzZYYVw0A=
+
+"@types/node@^14.14.21":
+  version "14.14.21"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.14.21.tgz?cache=0&sync_timestamp=1610658194064&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-14.14.21.tgz#d934aacc22424fe9622ebf6857370c052eae464e"
+  integrity sha1-2TSqzCJCT+liLr9oVzcMBS6uRk4=
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
