@@ -95,3 +95,13 @@ model Joke {
 
   @@map("jokes")
 }
+
+model Idiom {
+  id           Int    @id @default(autoincrement())
+  word         String @unique
+  pinyin       String
+  abbreviation String
+  example      String
+  explanation  String
+  derivation   String
+}
