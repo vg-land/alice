@@ -19,14 +19,18 @@ const jokeHandler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case "GET":
       {
-        const count = await prisma.joke.count()
-        const number = rank(0, count)
-        const data = await prisma.joke.findFirst({
-          skip: number,
-          take: 1,
-        })
-        if (data.content) res.json(data.content)
-        else res.json("null")
+        try {
+          const count = await prisma.joke.count()
+          const number = rank(0, count)
+          const data = await prisma.joke.findFirst({
+            skip: number,
+            take: 1,
+          })
+          if (data.content) res.json(data.content)
+          else res.json("没找到笑话，你自己编一个吧")
+        } catch {
+          res.json("用的人太多，服务崩了")
+        }
       }
       break
     case "POST":

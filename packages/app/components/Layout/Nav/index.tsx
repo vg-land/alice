@@ -14,7 +14,6 @@ interface Props {}
 const Nav: React.FC<Props> = (props) => {
   const router = useRouter()
   const { route } = router
-  const [session, loading] = useSession()
   return (
     <nav className="bg-white dark:bg-gray-800 shadow mx-auto ">
       <div className="max-w-screen-lg mx-auto px-8">

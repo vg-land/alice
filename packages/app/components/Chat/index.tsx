@@ -4,12 +4,12 @@ import Chat, { Bubble, MessageProps, useMessages } from "@chatui/core"
 import "@chatui/core/dist/index.css"
 import Head from "next/head"
 import { initialMessages, defaultQuickReplies } from "./config"
-import { Console } from "console"
+import isChinese from "@/lib/isChinese"
 
 const MyChat = (props) => {
   const ctx = useMessages(initialMessages)
   const { messages, appendMsg, setTyping } = ctx
-  const handleSend = (type, val) => {
+  const handleSend = async (type, val) => {
     if (type === "text" && val.trim()) {
       appendMsg({
         type: "text",
@@ -19,6 +19,18 @@ const MyChat = (props) => {
 
       setTyping(true)
 
+      // 如果是中文，开始成语接龙
+      if (isChinese(val)) {
+        const res = await fetch(`/api/nlp/idiom-solitaire?k=${val}`)
+        const data = await res.json()
+        if (data?.word) {
+          appendMsg({
+            type: "text",
+            content: { text: data.word },
+          })
+          return
+        }
+      }
       // 模拟回复消息
       setTimeout(() => {
         appendMsg({
